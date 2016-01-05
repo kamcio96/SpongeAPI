@@ -1,0 +1,24 @@
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    compile 'com.google.guava:guava:17.0'
+}
+
+subprojects {
+    // Gradle doesn't auto-apply this for subprojects
+    apply plugin: 'groovy'
+    dependencies {
+        compile gradleApi()
+        compile localGroovy()
+    }
+
+    // Add subproject buildSrc to Gradle script classpath
+    rootProject.dependencies {
+        runtime project
+    }
+}
